@@ -6,7 +6,7 @@ Create powerful user interfaces with our **Multi Select Dropdown**! This tool en
 The complete guide and reference is available here: [https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)
 
 ## Features
-- **Multiple Selections**: Users can select more than one option.
+- **Multiple Selections**: Users can select more than one option in the dropdown.
 - **Search Functionality**: Includes a built-in search to find options quickly.
 - **Dynamic Content**: Options can be dynamically added to the dropdown.
 - **Customizable UI**: Style the dropdown to match your site with minimal CSS.
@@ -59,7 +59,59 @@ new MultiSelect(document.getElementById('example-multi-select'), {
     placeholder: 'Select options',
     max: 5,  // Maximum number of items that can be selected
     search: true,  // Enable the search box
-    selectAll: true  // Add a select all option
+    selectAll: true,  // Add a select all option
+    onChange: function(value, text, element) {
+        console.log('Change:', value, text, element);
+    },
+    onSelect: function(value, text, element) {
+        console.log('Selected:', value, text, element);
+    },
+    onUnselect: function(value, text, element) {
+        console.log('Unselected:', value, text, element);
+    }
+});
+```
+
+Also, you can dynamically add the options:
+
+```javascript
+new MultiSelect(document.getElementById('example-multi-select'), {
+    data: [
+        {
+            value: 'opt1',
+            text: 'Option 1'
+        },
+        {
+            value: 'opt2',
+            html: '<strong>Option 2 with HTML!</strong>'
+        },
+        {
+            value: 'opt3',
+            text: 'Option 3',
+            selected: true
+        },
+        {
+            value: 'opt4',
+            text: 'Option 4'
+        },
+        {
+            value: 'opt5',
+            text: 'Option 5'
+        }
+    ],
+    placeholder: 'Select options',
+    max: 5,  // Maximum number of items that can be selected
+    search: true,  // Enable the search box
+    selectAll: true,  // Add a select all option
+    onChange: function(value, text, element) {
+        console.log('Change:', value, text, element);
+    },
+    onSelect: function(value, text, element) {
+        console.log('Selected:', value, text, element);
+    },
+    onUnselect: function(value, text, element) {
+        console.log('Unselected:', value, text, element);
+    }
 });
 ```
 
@@ -74,6 +126,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 David Adams - [info@codeshack.io](mailto:info@codeshack.io)
+
 GitHub: [https://github.com/codeshackio/multi-select-dropdown-js](https://github.com/codeshackio/multi-select-dropdown-js)
+
+X (Twitter): [https://twitter.com/codeshackio](https://twitter.com/codeshackio)
 
 Feel free to open an issue or submit pull requests.

@@ -13,6 +13,10 @@ The complete guide and reference is available here: [https://codeshack.io/multi-
 - **Lightweight**: Lightweight in size and does not depend on other libraries.
 - **Flexible**: Convert your existing native select elements with minimal configuration.
 
+## Screenshot
+
+![Screenshot of Multi Select Dropdown](assets/screenshot.png)
+
 ## Quick Start
 Clone the repository and include the CSS and JavaScript files in your project.
 
@@ -114,10 +118,6 @@ new MultiSelect(document.getElementById('example-multi-select'), {
     }
 });
 ```
-
-## Screenshot
-
-![Screenshot of Multi Select Dropdown](assets/screenshot.png)
 
 ## License
 

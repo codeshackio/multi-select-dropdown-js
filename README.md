@@ -16,11 +16,11 @@ The complete guide and reference is available here: [https://codeshack.io/multi-
 ## Quick Start
 Clone the repository and include the CSS and JavaScript files in your project.
 
-Add the following to the <head> tag:
+Add the following to the **head** tag:
 ```html
 <link rel="stylesheet" href="path/to/multi-select-dropdown.css">
 ```
-Append the following to the <body> tag:
+Append the following to the **body** tag:
 ```html
 <script src="path/to/multi-select-dropdown.js"></script>
 ```

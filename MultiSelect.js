@@ -13,6 +13,7 @@ class MultiSelect {
             search: true,
             selectAll: true,
             listAll: true,
+            closeListOnItemSelect: false,
             name: '',
             width: '',
             height: '',
@@ -95,7 +96,12 @@ class MultiSelect {
                     }
                     option.classList.add('multi-select-selected');
                     if (this.options.listAll === true || this.options.listAll === 'true') {
-                        headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+                        if (this.element.querySelector('.multi-select-header-option')) {
+                            let opt = Array.from(this.element.querySelectorAll('.multi-select-header-option')).pop();
+                            opt.insertAdjacentHTML('afterend', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+                        } else {
+                            headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+                        }
                     }
                     this.element.querySelector('.multi-select').insertAdjacentHTML('afterbegin', `<input type="hidden" name="${this.name}[]" value="${option.dataset.value}">`);
                     this.data.filter(data => data.value == option.dataset.value)[0].selected = true;
@@ -124,7 +130,9 @@ class MultiSelect {
                     this.element.querySelector('.multi-select-search').value = '';
                 }
                 this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
-                headerElement.classList.remove('multi-select-header-active');
+                if (this.options.closeListOnItemSelect === true || this.options.closeListOnItemSelect === 'true') {
+                    headerElement.classList.remove('multi-select-header-active');
+                }
                 this.options.onChange(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
                 if (selected) {
                     this.options.onSelect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);

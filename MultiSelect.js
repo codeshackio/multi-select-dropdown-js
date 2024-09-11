@@ -1,7 +1,7 @@
 /*
  * Created by David Adams
  * https://codeshack.io/multi-select-dropdown-html-javascript/
- * 
+ *
  * Released under the MIT license
  */
 class MultiSelect {
@@ -12,7 +12,9 @@ class MultiSelect {
             max: null,
             search: true,
             selectAll: true,
+            selectAllText: 'Select all',
             listAll: true,
+            listAllText: 'selected',
             closeListOnItemSelect: false,
             name: '',
             width: '',
@@ -63,7 +65,7 @@ class MultiSelect {
         if (this.options.selectAll === true || this.options.selectAll === 'true') {
             selectAllHTML = `<div class="multi-select-all">
                 <span class="multi-select-option-radio"></span>
-                <span class="multi-select-option-text">Select all</span>
+                <span class="multi-select-option-text">${this.selectAllText}</span>
             </div>`;
         }
         let template = `
@@ -116,7 +118,9 @@ class MultiSelect {
                     if (this.element.querySelector('.multi-select-header-option')) {
                         this.element.querySelector('.multi-select-header-option').remove();
                     }
-                    headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
+                    if(this.selectedValues.length > 0) {
+                        headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} ${this.listAllText}</span>`);
+                    }
                 }
                 if (!this.element.querySelector('.multi-select-header-option')) {
                     headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-placeholder">${this.placeholder}</span>`);
@@ -141,7 +145,7 @@ class MultiSelect {
                 }
             };
         });
-        headerElement.onclick = () => headerElement.classList.toggle('multi-select-header-active');  
+        headerElement.onclick = () => headerElement.classList.toggle('multi-select-header-active');
         if (this.options.search === true || this.options.search === 'true') {
             let search = this.element.querySelector('.multi-select-search');
             search.oninput = () => {
@@ -230,6 +234,22 @@ class MultiSelect {
 
     get placeholder() {
         return this.options.placeholder;
+    }
+
+    set listAllText(value) {
+        this.options.listAllText = value;
+    }
+
+    get listAllText() {
+        return this.options.listAllText;
+    }
+
+    set selectAllText(value) {
+        this.options.selectAllText = value;
+    }
+
+    get selectAllText() {
+        return this.options.selectAllText;
     }
 
     set name(value) {

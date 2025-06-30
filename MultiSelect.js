@@ -188,7 +188,7 @@ class MultiSelect {
             });
         } else {
             if (this.selectedValues.length > 0) {
-                this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
+                this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} ${this.listAllText}</span>`);
             }
         }
         if (this.element.querySelector('.multi-select-header-option')) {

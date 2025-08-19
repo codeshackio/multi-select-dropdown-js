@@ -5,8 +5,13 @@
  * Released under the MIT license
  */
 class MultiSelect {
+    static registry = new Map(); // Stores all instances by element ID
 
     constructor(element, options = {}) {
+        // Register this instance
+        if (element.id) {
+            MultiSelect.registry.set(element.id, this);
+        }
         let defaults = {
             placeholder: 'Select item(s)',
             max: null,
@@ -256,5 +261,19 @@ class MultiSelect {
         return this.options.height;
     }
 
+    clearSelected() {
+        let selectAllButton = this.element.querySelector('.multi-select-all');
+        if (!selectAllButton.classList.contains('multi-select-selected')) {
+            selectAllButton.classList.add('multi-select-selected');
+        }
+        selectAllButton.click();
+    }
+
+    // Static helper to fetch instance anywhere
+    static getById(id) {
+        return MultiSelect.registry.get(id);
+    }
+    
 }
 document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
+

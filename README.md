@@ -5,6 +5,8 @@ Create powerful user interfaces with our **Multi Select Dropdown**! This tool en
 
 The complete guide and reference is available here: [https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)
 
+Demo: [https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/multi-select-dropdown-js/) 
+
 ## Features
 - **Multiple Selections**: Users can select more than one option in the dropdown.
 - **Search Functionality**: Includes a built-in search to find options quickly.

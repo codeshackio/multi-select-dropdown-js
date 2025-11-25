@@ -1,39 +1,39 @@
 :root {
-  --spacing-smaller: 3px;
-  --spacing-small: 5px;
-  --spacing-medium: 7px;
-  --spacing-large: 12px;
-  --font-size: 12px;
-  --font-size-large: 14px;
-  --font-size-larger: 16px;
-  --line-height: 16px;
-  --line-height-larger: 20px;
-  --primary-color: #40c979;
-  --text-color-dark: #212529;
-  --text-color: #585858;
-  --text-color-light: #65727e;
-  --border-color: #bebebe;
-  --border-color-light: #f1f3f5;
-  --input-placeholder: #65727e;
-  --input-background: #e9e9ed;
-  --input-border: #dee2e6;
-  --input-border-active: #c1c9d0;
-  --input-border-invalid: #e44e4e;
-  --input-outline-invalid: rgba(219, 138, 138, 0.5);
-  --input-color: #e9e9ed;
-  --input-disabled: #f7f7f7;
-  --input-min-height: 45px;
-  --options-height: 40dvh;
-  --option-background: #f3f4f7;
-  --border-radius: 5px;
-  --icon-size: 12px;
-  --icon-space: 30px;
-  --checkbox-size: 16px;
-  --checkbox-radius: 4px;
-  --checkbox-border: #ced4da;
-  --checkbox-background: #fff;
-  --checkbox-active: #fff;
-  --checkbox-thickness: 2px;
+  --ms-spacing-smaller: 3px;
+  --ms-spacing-small: 5px;
+  --ms-spacing-medium: 7px;
+  --ms-spacing-large: 12px;
+  --ms-font-size: 12px;
+  --ms-font-size-large: 14px;
+  --ms-font-size-larger: 16px;
+  --ms-line-height: 16px;
+  --ms-line-height-larger: 20px;
+  --ms-primary-color: #40c979;
+  --ms-text-color-dark: #212529;
+  --ms-text-color: #585858;
+  --ms-text-color-light: #65727e;
+  --ms-border-color: #bebebe;
+  --ms-border-color-light: #f1f3f5;
+  --ms-input-placeholder: #65727e;
+  --ms-input-background: #e9e9ed;
+  --ms-input-border: #dee2e6;
+  --ms-input-border-active: #c1c9d0;
+  --ms-input-border-invalid: #e44e4e;
+  --ms-input-outline-invalid: rgba(219, 138, 138, 0.5);
+  --ms-input-color: #e9e9ed;
+  --ms-input-disabled: #f7f7f7;
+  --ms-input-min-height: 45px;
+  --ms-options-height: 40dvh;
+  --ms-option-background: #f3f4f7;
+  --ms-border-radius: 5px;
+  --ms-icon-size: 12px;
+  --ms-icon-space: 30px;
+  --ms-checkbox-size: 16px;
+  --ms-checkbox-radius: 4px;
+  --ms-checkbox-border: #ced4da;
+  --ms-checkbox-background: #fff;
+  --ms-checkbox-active: #fff;
+  --ms-checkbox-thickness: 2px;
 }
 .multi-select {
   display: flex;
@@ -44,13 +44,13 @@
   user-select: none;
 }
 .multi-select .multi-select-header {
-  border: 1px solid var(--input-border);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-medium) var(--spacing-large);
-  padding-right: var(--icon-space);
+  border: 1px solid var(--ms-input-border);
+  border-radius: var(--ms-border-radius);
+  padding: var(--ms-spacing-medium) var(--ms-spacing-large);
+  padding-right: var(--ms-icon-space);
   overflow: hidden;
-  gap: var(--spacing-medium);
-  min-height: var(--input-min-height);
+  gap: var(--ms-spacing-medium);
+  min-height: var(--ms-input-min-height);
 }
 .multi-select .multi-select-header::after {
   content: "";
@@ -60,11 +60,11 @@
   right: 15px;
   transform: translateY(-50%);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23949ba3' viewBox='0 0 16 16'%3E%3Cpath d='M8 13.1l-8-8 2.1-2.2 5.9 5.9 5.9-5.9 2.1 2.2z'/%3E%3C/svg%3E");
-  height: var(--icon-size);
-  width: var(--icon-size);
+  height: var(--ms-icon-size);
+  width: var(--ms-icon-size);
 }
 .multi-select .multi-select-header.multi-select-header-active {
-  border-color: var(--input-border-active);
+  border-color: var(--ms-input-border-active);
 }
 .multi-select .multi-select-header.multi-select-header-active::after {
   transform: translateY(-50%) rotate(180deg);
@@ -73,19 +73,19 @@
   display: flex;
 }
 .multi-select .multi-select-header .multi-select-header-placeholder {
-  color: var(--text-color-light);
+  color: var(--ms-text-color-light);
 }
 .multi-select .multi-select-header .multi-select-header-option {
   display: inline-flex;
   align-items: center;
-  background-color: var(--option-background);
-  font-size: var(--font-size-large);
-  padding: var(--spacing-smaller) var(--spacing-small);
-  border-radius: var(--border-radius);
+  background-color: var(--ms-option-background);
+  font-size: var(--ms-font-size-large);
+  padding: var(--ms-spacing-smaller) var(--ms-spacing-small);
+  border-radius: var(--ms-border-radius);
 }
 .multi-select .multi-select-header .multi-select-header-max {
-  font-size: var(--font-size-large);
-  color: var(--text-color-light);
+  font-size: var(--ms-font-size-large);
+  color: var(--ms-text-color-light);
 }
 .multi-select .multi-select-options {
   display: none;
@@ -96,12 +96,12 @@
   left: 0;
   right: 0;
   z-index: 999;
-  margin-top: var(--spacing-small);
-  padding: var(--spacing-small);
+  margin-top: var(--ms-spacing-small);
+  padding: var(--ms-spacing-small);
   background-color: #fff;
-  border-radius: var(--border-radius);
+  border-radius: var(--ms-border-radius);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: var(--options-height);
+  max-height: var(--ms-options-height);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -119,16 +119,16 @@
 }
 .multi-select .multi-select-options .multi-select-option,
 .multi-select .multi-select-options .multi-select-all {
-  padding: var(--spacing-large);
+  padding: var(--ms-spacing-large);
 }
 .multi-select .multi-select-options .multi-select-option .multi-select-option-radio,
 .multi-select .multi-select-options .multi-select-all .multi-select-option-radio {
-  background: var(--checkbox-background);
-  margin-right: var(--spacing-large);
-  height: var(--checkbox-size);
-  width: var(--checkbox-size);
-  border: 1px solid var(--checkbox-border);
-  border-radius: var(--checkbox-radius);
+  background: var(--ms-checkbox-background);
+  margin-right: var(--ms-spacing-large);
+  height: var(--ms-checkbox-size);
+  width: var(--ms-checkbox-size);
+  border: 1px solid var(--ms-checkbox-border);
+  border-radius: var(--ms-checkbox-radius);
 }
 .multi-select .multi-select-options .multi-select-option .multi-select-option-text,
 .multi-select .multi-select-options .multi-select-all .multi-select-option-text {
@@ -138,47 +138,47 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: inherit;
-  font-size: var(--font-size-larger);
-  line-height: var(--line-height);
+  font-size: var(--ms-font-size-larger);
+  line-height: var(--ms-line-height);
 }
 .multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-radio,
 .multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-radio {
-  border-color: var(--primary-color);
-  background-color: var(--primary-color);
+  border-color: var(--ms-primary-color);
+  background-color: var(--ms-primary-color);
 }
 .multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-radio::after,
 .multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-radio::after {
   content: "";
   display: block;
-  width: calc(var(--checkbox-size) / 4);
-  height: calc(var(--checkbox-size) / 2);
-  border: solid var(--checkbox-active);
-  border-width: 0 var(--checkbox-thickness) var(--checkbox-thickness) 0;
+  width: calc(var(--ms-checkbox-size) / 4);
+  height: calc(var(--ms-checkbox-size) / 2);
+  border: solid var(--ms-checkbox-active);
+  border-width: 0 var(--ms-checkbox-thickness) var(--ms-checkbox-thickness) 0;
   transform: rotate(45deg) translate(50%, -25%);
 }
 .multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-text,
 .multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-text {
-  color: var(--text-color-dark);
+  color: var(--ms-text-color-dark);
 }
 .multi-select .multi-select-options .multi-select-option:hover, .multi-select .multi-select-options .multi-select-option:active,
 .multi-select .multi-select-options .multi-select-all:hover, .multi-select .multi-select-options .multi-select-all:active {
-  background-color: var(--option-background);
+  background-color: var(--ms-option-background);
 }
 .multi-select .multi-select-options .multi-select-all {
-  border-bottom: 1px solid var(--border-color-light);
+  border-bottom: 1px solid var(--ms-border-color-light);
   border-radius: 0;
 }
 .multi-select .multi-select-options .multi-select-search {
-  padding: var(--spacing-medium) var(--spacing-large);
-  border: 1px solid var(--input-border);
-  border-radius: var(--border-radius);
+  padding: var(--ms-spacing-medium) var(--ms-spacing-large);
+  border: 1px solid var(--ms-input-border);
+  border-radius: var(--ms-border-radius);
   margin: 10px 10px 5px 10px;
   width: 100%;
   outline: none;
-  font-size: var(--font-size-larger);
+  font-size: var(--ms-font-size-larger);
 }
 .multi-select .multi-select-options .multi-select-search::placeholder {
-  color: var(--text-color-light);
+  color: var(--ms-text-color-light);
 }
 .multi-select .multi-select-header,
 .multi-select .multi-select-option,
@@ -187,20 +187,20 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   align-items: center;
-  border-radius: var(--border-radius);
+  border-radius: var(--ms-border-radius);
   cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: var(--font-size-larger);
-  color: var(--text-color-dark);
+  font-size: var(--ms-font-size-larger);
+  color: var(--ms-text-color-dark);
 }
 .multi-select.disabled {
   opacity: 0.6;
   pointer-events: none;
-  background-color: var(--input-disabled);
+  background-color: var(--ms-input-disabled);
 }
 .multi-select.multi-select-invalid .multi-select-header {
-  border-color: var(--input-border-invalid);
-  outline: var(--input-outline-invalid) solid 1px;
+  border-color: var(--ms-input-border-invalid);
+  outline: var(--ms-input-outline-invalid) solid 1px;
 }

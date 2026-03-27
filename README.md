@@ -1,10 +1,13 @@
 # Multi Select Dropdown JS
 
+[![npm version](https://badge.fury.io/js/multi-select-dropdown-js.svg)](https://www.npmjs.com/package/multi-select-dropdown-js)
+[![jsDelivr hits (npm)](https://data.jsdelivr.com/v1/package/npm/multi-select-dropdown-js/badge)](https://www.jsdelivr.com/package/npm/multi-select-dropdown-js)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 Create powerful user interfaces with our **Multi Select Dropdown**! This tool enhances native select elements, allowing for multiple selections, dynamic content generation, integrated search functionality, and customizable UI without any dependencies. No jQuery or other library is required!
 
-The complete guide and reference is available here: [https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)
-
-Demo: [https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/multi-select-dropdown-js/) 
+**Complete Guide & Reference:**[https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)  
+**Interactive Demo:**[https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/multi-select-dropdown-js/) 
 
 ## Features
 - **Multiple Selections**: Users can select more than one option in the dropdown.
@@ -21,16 +24,38 @@ Demo: [https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/mult
 
 ![Screenshot of Multi Select Dropdown](assets/screenshot.png)
 
-## Quick Start
-Clone the repository and include the CSS and JavaScript files in your project.
+## Installation
 
-Add the following to the **head** tag:
-```html
-<link rel="stylesheet" href="path/to/multi-select-dropdown.css">
+You can integrate the library into your project using NPM, a CDN, or by downloading the files manually.
+
+### Option 1: NPM (Recommended)
+Install the package via npm:
+```bash
+npm install multi-select-dropdown-js
 ```
-Append the following to the **body** tag:
+Then, import the CSS and JS into your project:
+```javascript
+import 'multi-select-dropdown-js/MultiSelect.min.css';
+import 'multi-select-dropdown-js/MultiSelect.min.js';
+```
+
+### Option 2: CDN (jsDelivr)
+For rapid prototyping or classic HTML workflows, include the minified files directly via jsDelivr.
+
+Add the CSS to your `<head>` tag:
 ```html
-<script src="path/to/multi-select-dropdown.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/multi-select-dropdown-js/MultiSelect.min.css">
+```
+Add the JavaScript just before your closing `</body>` tag:
+```html
+<script src="https://cdn.jsdelivr.net/npm/multi-select-dropdown-js/MultiSelect.min.js"></script>
+```
+
+### Option 3: Manual Download
+Clone the repository or download the ZIP, and include the files from the `dist/` folder in your project:
+```html
+<link rel="stylesheet" href="path/to/dist/MultiSelect.min.css">
+<script src="path/to/dist/MultiSelect.min.js"></script>
 ```
 
 ## Usage
@@ -39,6 +64,7 @@ Here's a simple example to add the multi-select dropdown to your project.
 
 *(Tip: Always append `[]` to your `name` attribute if you are submitting data to a backend like PHP!)*
 
+**Method A: Pure HTML Data Attributes**
 ```html
 <select id="example-multi-select" name="options[]" data-placeholder="Select options" multiple data-multi-select>
     <option value="option1">Option 1</option>
@@ -46,7 +72,8 @@ Here's a simple example to add the multi-select dropdown to your project.
     <!-- more options -->
 </select>
 ```
-Or initialize it manually via JavaScript:
+
+**Method B: JavaScript Initialization**
 ```html
 <select id="example-multi-select" name="options[]" multiple>
     <option value="option1">Option 1</option>
@@ -54,9 +81,8 @@ Or initialize it manually via JavaScript:
     <!-- more options -->
 </select>
 
-<script src="path/to/multi-select-dropdown.js"></script>
 <script>
-    new MultiSelect(document.getElementById('example-multi-select'), {
+    new MultiSelect('#example-multi-select', {
         placeholder: 'Select options',
         theme: 'auto'
     });
@@ -150,8 +176,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 David Adams - [info@codeshack.io](mailto:info@codeshack.io)
 
-GitHub: [https://github.com/codeshackio/multi-select-dropdown-js](https://github.com/codeshackio/multi-select-dropdown-js)
+GitHub:[https://github.com/codeshackio/multi-select-dropdown-js](https://github.com/codeshackio/multi-select-dropdown-js)
 
-X (Twitter): [https://twitter.com/codeshackio](https://twitter.com/codeshackio)
+X (Twitter):[https://twitter.com/codeshackio](https://twitter.com/codeshackio)
 
 Feel free to open an issue or submit pull requests.

@@ -5,8 +5,8 @@
 
 Create powerful user interfaces with our **Multi Select Dropdown**! This tool enhances native select elements, allowing for multiple selections, dynamic content generation, integrated search functionality, and customizable UI without any dependencies. No jQuery or other library is required!
 
-**Complete Guide & Reference:**[https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)  
-**Interactive Demo:**[https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/multi-select-dropdown-js/) 
+**Complete Guide & Reference:** [https://codeshack.io/multi-select-dropdown-html-javascript/](https://codeshack.io/multi-select-dropdown-html-javascript/)  
+**Interactive Demo:** [https://codeshack.io/multi-select-dropdown-js/](https://codeshack.io/multi-select-dropdown-js/) 
 
 ## Features
 - **Multiple Selections**: Users can select more than one option in the dropdown.
@@ -51,10 +51,10 @@ Add the JavaScript just before your closing `</body>` tag:
 ```
 
 ### Option 3: Manual Download
-Clone the repository or download the ZIP, and include the files from the `dist/` folder in your project:
+Clone the repository or download the ZIP, and include the files in your project:
 ```html
-<link rel="stylesheet" href="path/to/dist/MultiSelect.min.css">
-<script src="path/to/dist/MultiSelect.min.js"></script>
+<link rel="stylesheet" href="path/to/MultiSelect.min.css">
+<script src="path/to/MultiSelect.min.js"></script>
 ```
 
 ## Usage
@@ -175,8 +175,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 David Adams - [info@codeshack.io](mailto:info@codeshack.io)
 
-GitHub:[https://github.com/codeshackio/multi-select-dropdown-js](https://github.com/codeshackio/multi-select-dropdown-js)
+GitHub: [https://github.com/codeshackio/multi-select-dropdown-js](https://github.com/codeshackio/multi-select-dropdown-js)
 
-X (Twitter):[https://twitter.com/codeshackio](https://twitter.com/codeshackio)
+X (Twitter): [https://twitter.com/codeshackio](https://twitter.com/codeshackio)
 
 Feel free to open an issue or submit pull requests.

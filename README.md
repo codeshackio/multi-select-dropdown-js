@@ -1,7 +1,6 @@
 # Multi Select Dropdown JS
 
 [![npm version](https://badge.fury.io/js/multi-select-dropdown-js.svg)](https://www.npmjs.com/package/multi-select-dropdown-js)
-[![jsDelivr hits (npm)](https://data.jsdelivr.com/v1/package/npm/multi-select-dropdown-js/badge)](https://www.jsdelivr.com/package/npm/multi-select-dropdown-js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Create powerful user interfaces with our **Multi Select Dropdown**! This tool enhances native select elements, allowing for multiple selections, dynamic content generation, integrated search functionality, and customizable UI without any dependencies. No jQuery or other library is required!

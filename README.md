@@ -37,6 +37,13 @@ Then, import the CSS and JS into your project:
 import 'multi-select-dropdown-js/MultiSelect.min.css';
 import 'multi-select-dropdown-js/MultiSelect.min.js';
 ```
+Selects with the `data-multi-select` attribute are converted automatically. To create instances in your own code, import the class instead:
+```javascript
+import 'multi-select-dropdown-js/MultiSelect.min.css';
+import MultiSelect from 'multi-select-dropdown-js';
+
+new MultiSelect('#example-multi-select', { placeholder: 'Select options' });
+```
 
 ### Option 2: CDN (jsDelivr)
 For rapid prototyping or classic HTML workflows, include the minified files directly via jsDelivr.
@@ -45,7 +52,7 @@ Add the CSS to your `<head>` tag:
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/multi-select-dropdown-js/MultiSelect.min.css">
 ```
-Add the JavaScript just before your closing `</body>` tag:
+Add the JavaScript in your `<head>` or just before your closing `</body>` tag:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/multi-select-dropdown-js/MultiSelect.min.js"></script>
 ```
@@ -62,6 +69,8 @@ Clone the repository or download the ZIP, and include the files in your project:
 Here's a simple example to add the multi-select dropdown to your project. 
 
 *(Tip: Always append `[]` to your `name` attribute if you are submitting data to a backend like PHP!)*
+
+Each option value should be unique within a list, because the selection and the submitted form data are matched by value.
 
 **Method A: Pure HTML Data Attributes**
 ```html
@@ -166,6 +175,15 @@ const asyncSelect = new MultiSelect('#example-multi-select', {
 // Fetches a JSON array formatted like the data object above
 asyncSelect.fetch('https://api.yoursite.com/endpoint');
 ```
+
+## Changelog
+
+### 1.0.4
+- Selected items in the header now appear in the same order as the list. They were shown in reverse.
+- The script now works when it's loaded in the `<head>` without `defer`. Selects with `data-multi-select` are converted once the page has loaded, and loading it before `</body>` works as before.
+- "Select all" and group headers now work on a filtered list. The first click selects the items that match the search, the second click unselects them, and items outside the search keep their state. Their checkmarks follow the matching items.
+- Calling `destroy()` before the page has finished loading is no longer undone by the automatic setup, and one element that fails to convert no longer stops the rest.
+- The file can now be imported with a bundler or `require()`d (`module.exports`), and loading it where there is no `document` no longer throws.
 
 ## License
 

@@ -1,0 +1,34 @@
+{
+  "name": "multi-select-dropdown-js",
+  "version": "1.0.4",
+  "description": "A lightweight, dependency-free Multi Select Dropdown in Vanilla JavaScript.",
+  "main": "MultiSelect.js",
+  "unpkg": "MultiSelect.min.js",
+  "jsdelivr": "MultiSelect.min.js",
+  "style": "MultiSelect.min.css",
+  "files": [
+    "MultiSelect.js",
+    "MultiSelect.min.js",
+    "MultiSelect.css",
+    "MultiSelect.min.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeshackio/multi-select-dropdown-js.git"
+  },
+  "keywords": [
+    "select",
+    "multi-select",
+    "dropdown",
+    "vanilla-js",
+    "no-jquery",
+    "optgroup",
+    "form-validation"
+  ],
+  "author": "David Adams <info@codeshack.io> (https://codeshack.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeshackio/multi-select-dropdown-js/issues"
+  },
+  "homepage": "https://codeshack.io/multi-select-dropdown-html-javascript/"
+}

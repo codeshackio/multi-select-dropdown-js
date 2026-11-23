@@ -1,7 +1,8 @@
 /*
+ * MultiSelect.js v1.0.4
  * Created by David Adams
  * https://codeshack.io/multi-select-dropdown-html-javascript/
- * 
+ *
  * Released under the MIT license
  */
 class MultiSelect {
@@ -34,6 +35,7 @@ class MultiSelect {
             this.selectElement._multiSelect.destroy();
         }
         this.selectElement._multiSelect = this;
+        this.selectElement._multiSelectInit = true;
         this.originalStyle = this.selectElement.getAttribute('style') || '';
         this.originalTabIndex = this.selectElement.getAttribute('tabindex');
         this._isBatching = false;
@@ -185,12 +187,9 @@ class MultiSelect {
                 }
                 if (!this._isBatching) {
                     this._updateSelected();
-                    this._syncOriginalSelect(); 
+                    this._syncOriginalSelect();
                     if (this.options.closeListOnItemSelect) {
-                        if (this.options.search) {
-                            this.element.querySelector('.multi-select-search').value = '';
-                            this.element.querySelectorAll('.multi-select-option, .multi-select-group').forEach(opt => opt.style.display = 'flex');
-                        }
+                        this._resetSearch();
                         toggleDropdown(true);
                     }
                 }
@@ -208,7 +207,7 @@ class MultiSelect {
                 e.stopPropagation();
                 if (this.element.classList.contains('disabled')) return;
                 let groupName = groupEl.dataset.group;
-                let isSelected = groupEl.classList.contains('multi-select-selected');
+                let isSelected = this._allOn(this._visibleState().groups.get(groupName) || []);
                 let hitMax = false;
                 this._isBatching = true;
                 this.element.querySelectorAll('.multi-select-option').forEach(option => {
@@ -227,10 +226,7 @@ class MultiSelect {
                 this._updateSelected();
                 this._syncOriginalSelect();
                 if (this.options.closeListOnItemSelect) {
-                    if (this.options.search) {
-                        this.element.querySelector('.multi-select-search').value = '';
-                        this.element.querySelectorAll('.multi-select-option, .multi-select-group').forEach(opt => opt.style.display = 'flex');
-                    }
+                    this._resetSearch();
                     toggleDropdown(true);
                 }
                 if (hitMax) this.options.onMaxReached(this.options.max);
@@ -263,6 +259,7 @@ class MultiSelect {
                         group.style.display = 'none';
                     }
                 });
+                this._updateToggles();
             };
         }
         if (this.options.selectAll) {
@@ -270,7 +267,7 @@ class MultiSelect {
             selectAllButton.onclick = (e) => {
                 e.stopPropagation();
                 if (this.element.classList.contains('disabled')) return;
-                let isSelected = selectAllButton.classList.contains('multi-select-selected');
+                let isSelected = this._allOn(this._visibleState().all);
                 let hitMax = false;
                 this._isBatching = true;
                 this.element.querySelectorAll('.multi-select-option').forEach(option => {
@@ -289,10 +286,7 @@ class MultiSelect {
                 this._updateSelected();
                 this._syncOriginalSelect();
                 if (this.options.closeListOnItemSelect) {
-                    if (this.options.search) {
-                        this.element.querySelector('.multi-select-search').value = '';
-                        this.element.querySelectorAll('.multi-select-option, .multi-select-group').forEach(opt => opt.style.display = 'flex');
-                    }
+                    this._resetSearch();
                     toggleDropdown(true);
                 }
                 if (hitMax) this.options.onMaxReached(this.options.max);
@@ -368,12 +362,16 @@ class MultiSelect {
         this.element.querySelectorAll('.multi-select-header-option, .multi-select-header-placeholder').forEach(el => el.remove());
         if (this.selectedValues.length > 0) {
             if (this.options.listAll) {
-                this.selectedItems.forEach(item => {
+                const header = this.element.querySelector('.multi-select-header');
+                const anchor = header.firstChild;
+                let items = this._visibleState().ordered.filter(d => d.selected);
+                if (items.length !== this.selectedValues.length) items = this.selectedItems;
+                items.forEach(item => {
                     const el = document.createElement('span');
                     el.className = 'multi-select-header-option';
                     el.dataset.value = item.value;
                     el.innerHTML = item.html ? item.html : this._escapeHTML(item.text);
-                    this.element.querySelector('.multi-select-header').prepend(el);
+                    header.insertBefore(el, anchor);
                 });
             } else {
                 this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
@@ -386,33 +384,61 @@ class MultiSelect {
         }
     }
 
-    _updateSelectAll() {
-        if (!this.options.selectAll) return;
-        const selectAllBtn = this.element.querySelector('.multi-select-all');
-        if (selectAllBtn) {
-            const enabledData = this.data.filter(d => !d.disabled);
-            const allSelected = enabledData.length > 0 && enabledData.every(d => d.selected);
-            if (allSelected) selectAllBtn.classList.add('multi-select-selected');
-            else selectAllBtn.classList.remove('multi-select-selected');
-        }
+    _visibleState() {
+        const sep = String.fromCharCode(0);
+        const byKey = new Map();
+        this.data.forEach(d => {
+            const key = String(d.group || '') + sep + String(d.value);
+            if (!byKey.has(key)) byKey.set(key, d);
+        });
+        const state = { all: [], groups: new Map(), ordered: [] };
+        const seen = new Set();
+        this.element.querySelectorAll('.multi-select-option').forEach(option => {
+            const d = byKey.get(option.dataset.group + sep + option.dataset.value);
+            if (!d || seen.has(d)) return;
+            seen.add(d);
+            state.ordered.push(d);
+            if (option.style.display === 'none' || d.disabled) return;
+            state.all.push(d);
+            if (!state.groups.has(option.dataset.group)) state.groups.set(option.dataset.group, []);
+            state.groups.get(option.dataset.group).push(d);
+        });
+        return state;
     }
 
-    _updateGroups() {
+    _allOn(items) {
+        return items.length > 0 && items.every(d => d.selected);
+    }
+
+    _updateToggles() {
+        const state = this._visibleState();
+        if (this.options.selectAll) {
+            const selectAllBtn = this.element.querySelector('.multi-select-all');
+            if (selectAllBtn) selectAllBtn.classList.toggle('multi-select-selected', this._allOn(state.all));
+        }
         this.element.querySelectorAll('.multi-select-group').forEach(groupEl => {
-            const groupName = groupEl.dataset.group;
-            const enabledItems = this.data.filter(d => d.group === groupName && !d.disabled);
-            if (enabledItems.length > 0 && enabledItems.every(d => d.selected)) {
-                groupEl.classList.add('multi-select-selected');
-            } else {
-                groupEl.classList.remove('multi-select-selected');
-            }
+            groupEl.classList.toggle('multi-select-selected', this._allOn(state.groups.get(groupEl.dataset.group) || []));
         });
     }
 
-    _updateSelected() { 
-        this._updateHeader(); 
-        this._updateSelectAll();
-        this._updateGroups();
+    _resetSearch() {
+        if (!this.options.search) return;
+        this.element.querySelector('.multi-select-search').value = '';
+        this.element.querySelectorAll('.multi-select-option, .multi-select-group').forEach(opt => opt.style.display = 'flex');
+        this._updateToggles();
+    }
+
+    _updateSelectAll() {
+        this._updateToggles();
+    }
+
+    _updateGroups() {
+        this._updateToggles();
+    }
+
+    _updateSelected() {
+        this._updateHeader();
+        this._updateToggles();
         this._validate();
     }
     
@@ -671,4 +697,23 @@ class MultiSelect {
     get height() { return this.options.height; }
 }
 
-document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = MultiSelect;
+}
+
+if (typeof document !== 'undefined') {
+    const multiSelectAutoInit = () => {
+        document.querySelectorAll('[data-multi-select]').forEach(select => {
+            if (select._multiSelectInit) return;
+            try {
+                new MultiSelect(select);
+            } catch (error) {
+                console.error('MultiSelect:', error);
+            }
+        });
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', multiSelectAutoInit);
+    }
+    multiSelectAutoInit();
+}
